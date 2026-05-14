@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Altática Prisma — Inteligência Política Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue-deep:#0A0F1E;
+  --blue-dark:#0C1A30;
+  --blue-mid:#1B2A4E;
+  --blue-brand:#1B5DA0;
+  --blue-light:#2E7EC8;
+  --blue-glow:rgba(27,93,160,0.3);
+  --iris-1:rgba(180,200,255,0.18);
+  --iris-2:rgba(200,180,240,0.12);
+  --iris-3:rgba(180,220,240,0.10);
+  --orange:#F76C1C;
+  --orange-light:#FF8C45;
+  --orange-glow:rgba(247,108,28,0.25);
+  --white:#EEF2FA;
+  --muted:#6A80A8;
+  --muted-light:#8FA4C8;
+  --glass-bg:rgba(27,42,78,0.4);
+  --glass-border:rgba(27,93,160,0.25);
+  --glass-border-hover:rgba(247,108,28,0.45);
+  /* theme tokens */
+  --bg:var(--blue-deep);
+  --text-primary:#EEF2FA;
+  --text-muted:#6A80A8;
+  --text-muted-light:#8FA4C8;
+  --card-bg:rgba(27,42,78,0.4);
+  --card-border:rgba(27,93,160,0.25);
+  --nav-bg:rgba(11,22,41,0.7);
+  --nav-border:rgba(79,195,247,0.08);
+  --section-alt:rgba(27,42,78,0.2);
+  --section-alt-border:rgba(79,195,247,0.06);
+  --step-bg:rgba(27,42,78,0.4);
+  --report-bg:#0C1428;
+  --report-border:rgba(27,93,160,0.3);
+}
+
+/* ─── LIGHT THEME ─── */
+body.light{
+  --bg:#F8FAFC;
+  --text-primary:#1B2A4E;
+  --text-muted:#7A8FAD;
+  --text-muted-light:#5A7090;
+  --card-bg:rgba(255,255,255,0.85);
+  --card-border:rgba(27,93,160,0.12);
+  --nav-bg:rgba(255,255,255,0.82);
+  --nav-border:rgba(27,93,160,0.1);
+  --section-alt:rgba(27,93,160,0.04);
+  --section-alt-border:rgba(27,93,160,0.08);
+  --step-bg:rgba(255,255,255,0.9);
+  --report-bg:rgba(255,255,255,0.95);
+  --report-border:rgba(27,93,160,0.15);
+}
+body.light .bg-canvas{
+  background:
+    radial-gradient(ellipse 60% 50% at 10% 15%, rgba(180,200,255,0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 90% 80%, rgba(220,200,255,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 55% 5%, rgba(255,210,230,0.2) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 35% at 80% 10%, rgba(200,230,255,0.2) 0%, transparent 55%),
+    linear-gradient(160deg,#F8FAFC 0%,#FFFFFF 50%,#F5F0F7 100%);
+}
+body.light .bg-grid{
+  background-image:
+    linear-gradient(rgba(27,93,160,0.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(27,93,160,0.05) 1px,transparent 1px);
+}
+body.light nav{background:var(--nav-bg);border-bottom-color:var(--nav-border);}
+body.light .nav-brand{color:var(--blue-mid);}
+body.light .nav-brand span{color:var(--blue-brand);}
+body.light .btn-ghost{color:var(--text-muted);border-color:var(--card-border);}
+body.light .btn-ghost:hover{color:var(--blue-brand);border-color:var(--blue-brand);}
+body.light .hero-tag{background:rgba(27,93,160,0.07);border-color:rgba(27,93,160,0.2);color:var(--blue-brand);}
+body.light .hero-tag::before{background:var(--blue-brand);}
+body.light .hero h1{color:var(--text-primary);}
+body.light .hero-sub{color:var(--text-muted);}
+body.light .hero-stats{border-top-color:rgba(27,93,160,0.1);}
+body.light .stat-label{color:var(--text-muted);}
+body.light .section-tag{color:var(--orange);}
+body.light .section-title{color:var(--text-primary);}
+body.light .section-desc{color:var(--text-muted);}
+body.light .feature-card{background:var(--card-bg);border-color:var(--card-border);box-shadow:0 2px 16px rgba(27,93,160,0.06);}
+body.light .feature-card:hover{border-color:rgba(247,108,28,0.35);box-shadow:0 4px 24px rgba(27,93,160,0.1);}
+body.light .feature-title{color:var(--text-primary);}
+body.light .feature-desc{color:var(--text-muted);}
+body.light .big-highlight{background:rgba(27,93,160,0.05);border-color:rgba(27,93,160,0.15);}
+body.light .big-highlight-num{color:var(--blue-brand);}
+body.light .big-highlight-label{color:var(--text-muted);}
+body.light .how{background:var(--section-alt);border-top-color:var(--section-alt-border);border-bottom-color:var(--section-alt-border);}
+body.light .steps-grid{border-color:rgba(27,93,160,0.12);}
+body.light .step{background:var(--step-bg);box-shadow:0 1px 8px rgba(27,93,160,0.05);}
+body.light .step:hover{background:rgba(255,255,255,1);}
+body.light .step-num{color:rgba(27,93,160,0.18);}
+body.light .step-title{color:var(--text-primary);}
+body.light .step-text{color:var(--text-muted);}
+body.light .cta-section .section-title{color:var(--text-primary);}
+body.light .cta-section .section-desc{color:var(--text-muted);}
+body.light .cta-note{color:var(--text-muted);}
+body.light .cta-note strong{color:var(--blue-brand);}
+body.light .trust-item{color:var(--text-muted);}
+body.light .trust-item::before{background:var(--blue-brand);}
+body.light .trust-bar{border-top-color:rgba(27,93,160,0.1);}
+body.light footer{border-top-color:rgba(27,93,160,0.1);}
+body.light .footer-brand{color:var(--text-primary);}
+body.light .footer-brand span{color:var(--blue-brand);}
+body.light .footer-copy{color:var(--text-muted);}
+
+/* ─── LIGHT: Escuta inline overrides ─── */
+body.light #radar [style*="color:var(--muted-light)"],
+body.light #radar [style*="color:var(--muted)"] {color:var(--text-muted) !important;}
+body.light #radar [style*="color:var(--blue-light)"] {color:var(--blue-brand) !important;}
+body.light #radar [style*="color:var(--white)"] {color:var(--text-primary) !important;}
+body.light #radar [style*="color:var(--muted-light"];
+body.light #radar .escuta-arrow {color:var(--blue-brand) !important;}
+body.light #radar [style*="background:var(--glass-bg)"],
+body.light #radar [style*="background:rgba(27,42,78"] {
+  background:var(--card-bg) !important;
+  border-color:var(--card-border) !important;
+  box-shadow:0 2px 12px rgba(27,93,160,0.07);
+}
+body.light #radar [style*="background:#0C1428"],
+body.light #radar [style*="background:rgba(255,255,255,0.95)"] {
+  background:#fff !important;
+  border-color:rgba(27,93,160,0.15) !important;
+  box-shadow:0 8px 40px rgba(27,93,160,0.1);
+}
+body.light #radar [style*="color:var(--orange)"] {color:var(--orange) !important;}
+body.light #radar [style*="background:rgba(247,108,28"] {
+  background:rgba(247,108,28,0.06) !important;
+  border-color:rgba(247,108,28,0.2) !important;
+}
+body.light #radar [style*="background:rgba(27,93,160,0.08)"] {
+  background:rgba(27,93,160,0.04) !important;
+  border-top-color:rgba(27,93,160,0.1) !important;
+}
+body.light #radar [style*="font-size:22px;font-weight:500;color:var(--white)"],
+body.light #radar [style*="font-size:16px;font-weight:500;color:var(--white)"] {
+  color:var(--text-primary) !important;
+}
+body.light #radar [style*="color:var(--muted);font-size:13px"],
+body.light #radar [style*="font-size:13px;color:var(--muted)"],
+body.light #radar [style*="font-size:10px;color:var(--muted)"],
+body.light #radar [style*="font-size:11px;color:var(--muted)"] {
+  color:var(--text-muted) !important;
+}
+body.light #radar [style*="color:var(--blue-light);font-size:10px"] {color:var(--blue-brand) !important;}
+
+/* ─── THEME TOGGLE ─── */
+.theme-toggle{
+  display:flex;align-items:center;
+  background:rgba(27,93,160,0.1);
+  border:1px solid rgba(27,93,160,0.2);
+  border-radius:100px;
+  padding:3px;
+  gap:2px;
+  margin-right:12px;
+  cursor:pointer;
+}
+.theme-toggle button{
+  background:none;border:none;cursor:pointer;
+  padding:5px 12px;border-radius:100px;
+  font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;
+  color:var(--muted);transition:all .2s;
+  white-space:nowrap;
+}
+.theme-toggle button.active{
+  background:var(--blue-brand);color:#fff;
+}
+body.light .theme-toggle{background:rgba(27,93,160,0.07);border-color:rgba(27,93,160,0.15);}
+body.light .theme-toggle button{color:var(--text-muted);}
+body.light .theme-toggle button.active{background:var(--blue-brand);color:#fff;}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  font-weight:400;
+  background:var(--bg);
+  color:var(--text-primary);
+  overflow-x:hidden;
+  line-height:1.6;
+  transition:background .3s, color .3s;
+}
+
+/* ─── BG ATMOSPHERE — iridescência da marca ─── */
+.bg-canvas{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 55% 45% at 12% 18%, var(--iris-1) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 55% at 88% 75%, var(--iris-2) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 40% at 55% 10%, var(--iris-3) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 75% 95%, rgba(247,108,28,0.06) 0%, transparent 60%),
+    linear-gradient(160deg, #0A0F1E 0%, #0C1A30 40%, #0F1E38 70%, #0A0F1E 100%);
+}
+.bg-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(27,93,160,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27,93,160,0.06) 1px, transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 70% 70% at 50% 40%, black 0%, transparent 85%);
+}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 6%;
+  background:var(--nav-bg);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--nav-border);
+  transition:padding .3s, background .3s;
+}
+.nav-brand{
+  font-size:18px;font-weight:700;letter-spacing:-.02em;
+  color:var(--text-primary);text-decoration:none;
+}
+.nav-brand span{color:var(--blue-light);font-weight:300;}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--orange);color:#fff;
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;
+  padding:10px 22px;border-radius:100px;text-decoration:none;
+  transition:background .2s,transform .15s;
+  white-space:nowrap;
+}
+.nav-cta:hover{background:var(--orange-light);transform:translateY(-1px)}
+.nav-cta svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+
+/* ─── SECTIONS WRAPPER ─── */
+.page{position:relative;z-index:1}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:120px 6% 80px;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--glass-border);
+  background:rgba(27,93,160,0.1);
+  color:var(--blue-light);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  padding:6px 18px;border-radius:100px;margin-bottom:36px;
+  animation:fadeUp .8s ease both;
+}
+.hero-tag::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--blue-light);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+
+.hero h1{
+  font-family:'DM Sans',sans-serif;
+  font-size:clamp(36px,5.5vw,72px);
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-.03em;
+  max-width:860px;
+  margin-bottom:28px;
+  animation:fadeUp .8s .15s ease both;
+}
+.hero h1 em{
+  font-style:normal;color:var(--blue-light);font-weight:300;
+}
+.hero h1 .accent{color:var(--orange)}
+
+.hero-sub{
+  font-size:clamp(16px,2vw,20px);
+  color:var(--muted);
+  max-width:540px;
+  margin-bottom:52px;
+  line-height:1.7;
+  animation:fadeUp .8s .3s ease both;
+}
+
+.hero-actions{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center;
+  animation:fadeUp .8s .45s ease both;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--orange);color:#fff;
+  font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;
+  padding:16px 34px;border-radius:100px;text-decoration:none;
+  box-shadow:0 0 40px rgba(247,108,28,0.35);
+  transition:all .2s;
+}
+.btn-primary:hover{background:var(--orange-light);transform:translateY(-2px);box-shadow:0 8px 40px rgba(247,108,28,0.5)}
+.btn-primary svg{width:20px;height:20px;fill:currentColor;flex-shrink:0}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--glass-border);
+  color:var(--muted);
+  font-family:'DM Sans',sans-serif;font-size:15px;font-weight:400;
+  padding:15px 28px;border-radius:100px;text-decoration:none;
+  transition:all .2s;
+}
+.btn-ghost:hover{border-color:rgba(79,195,247,0.4);color:var(--cyan)}
+
+/* hero numbers */
+.hero-stats{
+  display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:center;
+  margin-top:72px;
+  padding-top:48px;
+  border-top:1px solid rgba(255,255,255,0.05);
+  animation:fadeUp .8s .6s ease both;
+}
+.stat-item{text-align:center}
+.stat-num{
+  font-family:'DM Sans',sans-serif;
+  font-size:34px;font-weight:500;
+  color:var(--text-primary);line-height:1;
+  letter-spacing:-.02em;
+}
+.stat-num span{color:var(--orange);font-size:22px}
+.stat-label{font-size:12px;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin-top:6px}
+.stat-divider{width:1px;height:48px;background:var(--card-border)}
+
+/* ─── SECTION SHARED ─── */
+section{padding:100px 6%}
+.section-tag{
+  font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:16px;
+}
+.section-title{
+  font-family:'DM Sans',sans-serif;
+  font-size:clamp(26px,3.5vw,48px);
+  font-weight:500;line-height:1.15;
+  letter-spacing:-.025em;
+  margin-bottom:20px;
+}
+.section-title em{font-style:normal;color:var(--blue-brand);font-weight:300}
+.section-desc{
+  font-size:18px;color:var(--text-muted);
+  max-width:520px;line-height:1.7;
+  margin-bottom:56px;
+}
+
+/* ─── ESCUTA ESTRATÉGICA ─── */
+#radar{padding:100px 6%}
+.radar-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
+@media(max-width:760px){
+  .what-inner{grid-template-columns:1fr;gap:40px}
+  .radar-grid{grid-template-columns:1fr}
+}
+.radar-left{display:flex;flex-direction:column;gap:14px}
+.r-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:20px 24px;backdrop-filter:blur(12px);transition:border-color .2s}
+.r-label-tag{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+.r-questions{display:flex;flex-direction:column;gap:10px}
+.r-q{font-size:14px;color:var(--text-muted);display:flex;gap:10px;align-items:flex-start;line-height:1.5}
+.r-arrow{color:var(--blue-brand);flex-shrink:0;font-weight:500}
+.r-metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.r-metric{padding:20px}
+.r-metric-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
+.r-metric-val{font-size:22px;font-weight:500;color:var(--text-primary);letter-spacing:-.02em;line-height:1}
+.r-metric-sub{font-size:13px;color:var(--text-muted);margin-top:4px}
+.r-delivery{background:rgba(247,108,28,0.06) !important;border-color:rgba(247,108,28,0.2) !important}
+.r-delivery-title{font-size:14px;font-weight:500;color:var(--text-primary);margin-bottom:6px}
+.r-delivery-list{font-size:13px;color:var(--text-muted);line-height:1.7}
+/* mockup */
+.r-mockup{background:var(--report-bg);border:1px solid var(--report-border);border-radius:18px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.3)}
+body.light .r-mockup{box-shadow:0 8px 48px rgba(27,93,160,0.12)}
+.r-mock-header{padding:18px 22px;border-bottom:1px solid var(--card-border);display:flex;justify-content:space-between;align-items:center}
+.r-mock-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
+.r-mock-title{font-size:15px;font-weight:500;color:var(--text-primary)}
+.r-mock-badge{font-size:11px;color:var(--orange);letter-spacing:.08em;font-weight:500;background:rgba(247,108,28,0.1);border:1px solid rgba(247,108,28,0.2);padding:4px 12px;border-radius:20px;white-space:nowrap}
+.r-mock-block{padding:18px 22px;border-bottom:1px solid var(--card-border)}
+.r-mock-block:last-of-type{border-bottom:none}
+.r-mock-section-label{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px}
+.r-mock-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.r-mock-platform{font-size:15px;font-weight:500;letter-spacing:-.01em;line-height:1}
+.r-mock-platform.fb{color:#2E7EC8}
+.r-mock-platform.ig{color:var(--blue-brand)}
+.r-mock-platform.tt{color:var(--text-muted)}
+.r-mock-pct{font-size:10px;color:var(--text-muted);margin-top:3px;letter-spacing:.04em}
+.r-mock-bar{margin-top:12px;height:5px;border-radius:4px;display:flex;overflow:hidden;gap:2px}
+.r-mock-bar-fill{height:100%}
+.r-mock-bar-fill.fb{background:#2E7EC8;border-radius:4px 0 0 4px}
+.r-mock-bar-fill.ig{background:var(--blue-brand)}
+.r-mock-bar-fill.tt{background:rgba(27,93,160,0.3);border-radius:0 4px 4px 0}
+.r-mock-legend{display:flex;gap:14px;margin-top:6px}
+.r-mock-legend span{font-size:10px;color:var(--text-muted);display:flex;align-items:center;gap:4px}
+.dot{display:inline-block;width:7px;height:7px;border-radius:2px;flex-shrink:0}
+.dot.fb{background:#2E7EC8}.dot.ig{background:var(--blue-brand)}.dot.tt{background:rgba(27,93,160,0.4)}
+/* sentiment */
+.r-mock-sentiment{display:flex;flex-direction:column;gap:8px}
+.r-sent-row{display:flex;align-items:center;gap:10px}
+.r-sent-label{font-size:11px;color:var(--text-muted);width:54px;flex-shrink:0}
+.r-sent-bar{flex:1;height:6px;background:var(--card-border);border-radius:4px;overflow:hidden}
+.r-sent-fill{height:100%;border-radius:4px}
+.r-sent-fill.attack{background:linear-gradient(90deg,#C62828,#EF5350)}
+.r-sent-fill.defense{background:linear-gradient(90deg,#1B5DA0,#2E7EC8)}
+.r-sent-fill.electoral{background:linear-gradient(90deg,#E65100,#F76C1C)}
+.r-sent-fill.neutral{background:rgba(100,120,160,0.4)}
+.r-sent-pct{font-size:11px;width:30px;text-align:right;font-weight:500}
+.r-sent-pct.attack{color:#EF5350}.r-sent-pct.defense{color:#2E7EC8}.r-sent-pct.electoral{color:var(--orange)}.r-sent-pct.neutral{color:var(--text-muted)}
+/* semantic */
+.r-mock-3col.semantic{gap:12px}
+.r-sem-head{font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:600}
+.r-sem-head.attack{color:#EF5350}.r-sem-head.defense{color:#2E7EC8}.r-sem-head.electoral{color:var(--orange)}
+.r-sem-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px}
+.r-sem-term{color:var(--text-muted)}
+.r-sem-count{font-weight:500}
+.r-sem-count.attack{color:#EF5350}.r-sem-count.defense{color:#2E7EC8}.r-sem-count.electoral{color:var(--orange)}
+/* footer */
+.r-mock-footer{padding:10px 22px;background:rgba(27,93,160,0.06);border-top:1px solid var(--card-border);display:flex;justify-content:space-between;align-items:center}
+.r-mock-footer-label{font-size:9px;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase}
+.r-mock-footer-brand{font-size:10px;color:var(--blue-brand);font-weight:500}
+.what-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:64px;
+  align-items:start;
+}
+@media(max-width:760px){
+  .radar-grid{grid-template-columns:1fr !important}
+}
+.what-left .section-desc{margin-bottom:0}
+
+.features{display:flex;flex-direction:column;gap:16px}
+.feature-card{
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:16px;
+  padding:24px 28px;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  transition:border-color .25s, transform .2s;
+  cursor:default;
+}
+.feature-card:hover{
+  border-color:var(--glass-border-hover);
+  transform:translateX(4px);
+}
+.feature-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:rgba(247,108,28,0.12);
+  border:1px solid rgba(247,108,28,0.2);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;
+  font-size:18px;
+}
+.feature-title{font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:6px}
+.feature-desc{font-size:14px;color:var(--text-muted);line-height:1.6}
+
+/* big number highlight */
+.big-highlight{
+  background:linear-gradient(135deg, rgba(27,93,160,0.12) 0%, rgba(11,22,41,0.2) 100%);
+  border:1px solid var(--card-border);
+  border-radius:20px;
+  padding:36px;
+  margin-top:32px;
+  position:relative;
+  overflow:hidden;
+}
+.big-highlight::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(circle, rgba(27,93,160,0.1) 0%, transparent 70%);
+}
+.big-highlight-num{
+  font-family:'DM Sans',sans-serif;
+  font-size:48px;font-weight:500;color:var(--blue-brand);
+  letter-spacing:-.03em;
+  line-height:1;margin-bottom:8px;
+}
+.big-highlight-label{font-size:14px;color:var(--text-muted);line-height:1.5}
+
+/* ─── HOW IT WORKS ─── */
+.how{
+  background:rgba(27,42,78,0.2);
+  border-top:1px solid rgba(79,195,247,0.06);
+  border-bottom:1px solid rgba(79,195,247,0.06);
+}
+.steps-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:2px;
+  border:1px solid var(--glass-border);
+  border-radius:20px;
+  overflow:hidden;
+}
+.step{
+  background:var(--glass-bg);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  padding:36px 28px;
+  position:relative;
+  transition:background .2s;
+}
+.step:hover{background:rgba(27,42,78,0.65)}
+.step-num{
+  font-family:'DM Sans',sans-serif;
+  font-size:44px;font-weight:300;
+  color:rgba(27,93,160,0.3);
+  letter-spacing:-.02em;
+  line-height:1;
+  margin-bottom:20px;
+}
+.step-title{font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:8px}
+.step-text{font-size:14px;color:var(--text-muted);line-height:1.6}
+.step-badge{
+  display:inline-block;
+  background:rgba(247,108,28,0.12);
+  border:1px solid rgba(247,108,28,0.25);
+  color:var(--orange-light);
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 10px;border-radius:100px;margin-top:14px;
+}
+
+/* ─── CTA SECTION ─── */
+.cta-section{text-align:center;position:relative;overflow:hidden}
+.cta-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:400px;
+  background:radial-gradient(ellipse, rgba(247,108,28,0.12) 0%, transparent 70%);
+  pointer-events:none;
+}
+.cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.cta-section .section-title{max-width:600px;margin:0 auto 20px}
+.cta-section .section-desc{max-width:500px;margin:0 auto 48px}
+
+.whatsapp-btn{
+  display:inline-flex;align-items:center;gap:12px;
+  background:linear-gradient(135deg,#25D366,#1DA851);
+  color:#fff;
+  font-family:'DM Sans',sans-serif;font-size:18px;font-weight:600;
+  padding:20px 44px;border-radius:100px;text-decoration:none;
+  box-shadow:0 0 60px rgba(37,211,102,0.3);
+  transition:all .25s;
+  margin-bottom:20px;
+}
+.whatsapp-btn:hover{transform:translateY(-3px);box-shadow:0 12px 60px rgba(37,211,102,0.45)}
+.whatsapp-btn svg{width:24px;height:24px;fill:currentColor;flex-shrink:0}
+.cta-note{font-size:13px;color:var(--muted)}
+.cta-note strong{color:var(--blue-light)}
+
+/* trust signals */
+.trust-bar{
+  display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;
+  margin-top:64px;padding-top:48px;
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+.trust-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;color:var(--muted);
+}
+.trust-item::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--blue-brand);flex-shrink:0;
+}
+
+/* ─── FOOTER ─── */
+footer{
+  padding:40px 6%;
+  border-top:1px solid var(--card-border);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+}
+.footer-brand{font-size:15px;font-weight:600;color:var(--text-primary)}
+.footer-brand span{color:var(--blue-brand);font-weight:300}
+.footer-copy{font-size:13px;color:var(--text-muted)}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ─── TABLET ─── */
+@media(max-width:900px){
+  .what-inner{grid-template-columns:1fr;gap:40px}
+  .radar-grid{grid-template-columns:1fr}
+  .r-mockup{max-width:560px;margin:0 auto}
+}
+
+/* ─── MOBILE ─── */
+@media(max-width:600px){
+  /* nav */
+  nav{padding:14px 5%;gap:8px;flex-wrap:nowrap}
+  .nav-brand{font-size:15px}
+  .theme-toggle button{padding:4px 9px;font-size:11px}
+  .nav-cta{font-size:13px;padding:8px 14px}
+  .nav-cta svg{display:none}
+
+  /* hero */
+  .hero{padding:96px 5% 56px}
+  .hero h1{font-size:clamp(30px,9vw,44px)}
+  .hero-sub{font-size:15px}
+  .hero-stats{gap:20px;margin-top:48px;padding-top:36px}
+  .stat-num{font-size:26px}
+  .stat-divider{display:none}
+  .btn-ghost{display:none}
+
+  /* sections */
+  section{padding:64px 5%}
+  #radar{padding:64px 5%}
+  .section-title{font-size:clamp(24px,7vw,36px)}
+  .section-desc{font-size:16px}
+
+  /* what is prisma */
+  .what-inner{grid-template-columns:1fr;gap:32px}
+  .big-highlight-num{font-size:36px}
+
+  /* escuta */
+  .radar-grid{grid-template-columns:1fr}
+  .r-metrics{grid-template-columns:1fr 1fr}
+  .r-mock-3col{grid-template-columns:1fr 1fr}
+  .r-mock-3col .r-mock-platform:last-child,
+  .r-mock-3col .r-mock-pct:last-child{display:none}
+  .r-mock-3col.semantic{grid-template-columns:1fr}
+  .r-sem-head,.r-sem-row{display:flex;justify-content:space-between}
+  .r-mock-footer{flex-direction:column;gap:4px;text-align:center}
+
+  /* steps */
+  .steps-grid{grid-template-columns:1fr}
+  .step{padding:28px 22px}
+
+  /* cta */
+  .whatsapp-btn{font-size:15px;padding:16px 28px}
+  .trust-bar{gap:16px;flex-direction:column;align-items:flex-start;padding-left:8px}
+
+  /* footer */
+  footer{flex-direction:column;text-align:center}
+  .footer-brand,.footer-copy{text-align:center}
+}
+
+/* ─── VERY SMALL ─── */
+@media(max-width:380px){
+  .theme-toggle{display:none}
+  .nav-cta{font-size:12px;padding:7px 12px}
+  .r-metrics{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- BG -->
+<div class="bg-canvas" aria-hidden="true"></div>
+<div class="bg-grid" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">Altática <span>Prisma</span></a>
+  <div style="display:flex;align-items:center;gap:8px">
+    <div class="theme-toggle" id="themeToggle">
+      <button id="btnDark" class="active" onclick="setTheme('dark')">Dark</button>
+      <button id="btnLight" onclick="setTheme('light')">Light</button>
+    </div>
+    <a href="https://wa.me/5551981171061?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20Prisma%20Altática." class="nav-cta" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.556 4.124 1.528 5.855L0 24l6.335-1.502A11.955 11.955 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.787 9.787 0 0 1-5.001-1.368l-.36-.213-3.73.885.916-3.639-.234-.374A9.769 9.769 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+    Falar pelo WhatsApp
+  </a>
+  </div>
+</nav>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-tag">Inteligência política digital · Eleições 2026</div>
+    <h1>
+      O território que você<br>
+      ainda não <em>enxerga</em><br>
+      decide sua <span class="accent">eleição.</span>
+    </h1>
+    <p class="hero-sub">
+      O Prisma cruza dados eleitorais, mapeamento territorial e estratégia digital para transformar sua campanha em decisão, não em aposta.
+    </p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5551981171061?text=Ol%C3%A1%2C%20quero%20conhecer%20o%20Prisma%20Altática." class="btn-primary" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.556 4.124 1.528 5.855L0 24l6.335-1.502A11.955 11.955 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.787 9.787 0 0 1-5.001-1.368l-.36-.213-3.73.885.916-3.639-.234-.374A9.769 9.769 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+        Quero conhecer o Prisma
+      </a>
+      <a href="#prisma" class="btn-ghost">O que é o Prisma ↓</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">2026<span>→</span></div>
+        <div class="stat-label">Janela aberta agora</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">5.568</div>
+        <div class="stat-label">Municípios mapeados</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">3<span>×</span></div>
+        <div class="stat-label">Mais dados que o adversário</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O QUE É O PRISMA -->
+  <section id="prisma">
+    <div class="what-inner">
+      <div class="what-left reveal">
+        <p class="section-tag">O que é o Prisma</p>
+        <h2 class="section-title">
+          Inteligência que<br>transforma território<br>em <em>estratégia</em>
+        </h2>
+        <p class="section-desc">
+          O Prisma é a plataforma de inteligência política da Altática. Reunimos dados eleitorais, comportamento digital e análise territorial em um único sistema — para que você saiba exatamente onde crescer, onde defender e como mobilizar.
+        </p>
+        <div class="big-highlight">
+          <div class="big-highlight-num">RS → BR</div>
+          <div class="big-highlight-label">
+            Originalmente desenvolvido para o cenário político do Rio Grande do Sul, o Prisma opera com base nacional — qualquer estado, qualquer nível de disputa.
+          </div>
+        </div>
+      </div>
+      <div class="features reveal">
+        <div class="feature-card">
+          <div class="feature-icon">🗺️</div>
+          <div class="feature-title">Mapeamento de território</div>
+          <div class="feature-desc">Visualize seus eleitores por município, zona eleitoral e segmento demográfico. Saiba onde você já ganhou e onde ainda tem potencial inexplorado.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <div class="feature-title">Análise de adversário</div>
+          <div class="feature-desc">Monitoramento contínuo da presença digital e territorial dos seus competidores. Antecipe movimentos antes que virem problema.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <div class="feature-title">Estratégia de mobilização</div>
+          <div class="feature-desc">Integração com WhatsApp e redes sociais para ativar a base certa, na hora certa, com a mensagem adequada para cada segmento.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">Inteligência contínua</div>
+          <div class="feature-desc">Não é um relatório mensal — é um sistema vivo. Atualizações semanais, reuniões estratégicas e presença constante ao lado do seu time.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESCUTA ESTRATÉGICA -->
+  <section id="radar">
+    <div class="reveal" style="text-align:center;margin-bottom:64px">
+      <p class="section-tag">Escuta Estratégica</p>
+      <h2 class="section-title">Transformamos barulho<br>em <em>leitura estratégica</em></h2>
+      <p class="section-desc" style="margin:0 auto;text-align:center">Toda semana, lemos o que está sendo dito sobre você nas redes — e entregamos um documento de inteligência narrativa pronto para decisão.</p>
+    </div>
+
+    <div class="radar-grid reveal">
+
+      <!-- LEFT -->
+      <div class="radar-left">
+
+        <div class="r-card">
+          <div class="r-label-tag">O que a Escuta revela</div>
+          <div class="r-questions">
+            <div class="r-q"><span class="r-arrow">→</span>Que histórias estão sendo contadas sobre você?</div>
+            <div class="r-q"><span class="r-arrow">→</span>Quem está disputando o sentido da sua atuação?</div>
+            <div class="r-q"><span class="r-arrow">→</span>Onde estão os riscos de desgaste ou ataque?</div>
+            <div class="r-q"><span class="r-arrow">→</span>Onde estão as oportunidades de fortalecer imagem e base?</div>
+          </div>
+        </div>
+
+        <div class="r-metrics">
+          <div class="r-card r-metric">
+            <div class="r-metric-label">Entrega</div>
+            <div class="r-metric-val">Semanal</div>
+            <div class="r-metric-sub">ciclo contínuo</div>
+          </div>
+          <div class="r-card r-metric">
+            <div class="r-metric-label">Cobertura</div>
+            <div class="r-metric-val">3 redes</div>
+            <div class="r-metric-sub">FB · IG · TikTok</div>
+          </div>
+        </div>
+
+        <div class="r-card r-delivery">
+          <div class="r-delivery-title">Entrega semanal em PDF</div>
+          <div class="r-delivery-list">Volume e engajamento · Mapa de sentimento · Panorama narrativo · Narrativas dominantes · Ranking semântico · Diagnóstico estratégico</div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: mockup -->
+      <div class="r-mockup">
+
+        <div class="r-mock-header">
+          <div>
+            <div class="r-mock-eyebrow">CICLO SEMANAL · EDIÇÃO ATUAL</div>
+            <div class="r-mock-title">Escuta Estratégica</div>
+          </div>
+          <div class="r-mock-badge">Altática Prisma</div>
+        </div>
+
+        <div class="r-mock-block">
+          <div class="r-mock-section-label">01 · VOLUME E DISTRIBUIÇÃO</div>
+          <div class="r-mock-3col">
+            <div>
+              <div class="r-mock-platform fb">Facebook</div>
+              <div class="r-mock-pct">57,8% do volume</div>
+            </div>
+            <div>
+              <div class="r-mock-platform ig">Instagram</div>
+              <div class="r-mock-pct">35,0% do volume</div>
+            </div>
+            <div>
+              <div class="r-mock-platform tt">TikTok</div>
+              <div class="r-mock-pct">7,2% do volume</div>
+            </div>
+          </div>
+          <div class="r-mock-bar">
+            <div class="r-mock-bar-fill fb" style="width:57.8%"></div>
+            <div class="r-mock-bar-fill ig" style="width:35%"></div>
+            <div class="r-mock-bar-fill tt" style="flex:1"></div>
+          </div>
+          <div class="r-mock-legend">
+            <span><i class="dot fb"></i>FB 57,8%</span>
+            <span><i class="dot ig"></i>IG 35,0%</span>
+            <span><i class="dot tt"></i>TT 7,2%</span>
+          </div>
+        </div>
+
+        <div class="r-mock-block">
+          <div class="r-mock-section-label">02 · MAPA DE SENTIMENTO</div>
+          <div class="r-mock-sentiment">
+            <div class="r-sent-row"><span class="r-sent-label">Ataque</span><div class="r-sent-bar"><div class="r-sent-fill attack" style="width:19%"></div></div><span class="r-sent-pct attack">19%</span></div>
+            <div class="r-sent-row"><span class="r-sent-label">Defesa</span><div class="r-sent-bar"><div class="r-sent-fill defense" style="width:8%"></div></div><span class="r-sent-pct defense">8%</span></div>
+            <div class="r-sent-row"><span class="r-sent-label">Eleitoral</span><div class="r-sent-bar"><div class="r-sent-fill electoral" style="width:22%"></div></div><span class="r-sent-pct electoral">22%</span></div>
+            <div class="r-sent-row"><span class="r-sent-label">Neutro</span><div class="r-sent-bar"><div class="r-sent-fill neutral" style="width:51%"></div></div><span class="r-sent-pct neutral">51%</span></div>
+          </div>
+        </div>
+
+        <div class="r-mock-block">
+          <div class="r-mock-section-label">03 · RANKING SEMÂNTICO</div>
+          <div class="r-mock-3col semantic">
+            <div>
+              <div class="r-sem-head attack">ATAQUE</div>
+              <div class="r-sem-row"><span class="r-sem-term">termo #1</span><span class="r-sem-count attack">3.8k</span></div>
+              <div class="r-sem-row"><span class="r-sem-term">termo #2</span><span class="r-sem-count attack">3.5k</span></div>
+              <div class="r-sem-row"><span class="r-sem-term">termo #3</span><span class="r-sem-count attack">2.1k</span></div>
+            </div>
+            <div>
+              <div class="r-sem-head defense">DEFESA</div>
+              <div class="r-sem-row"><span class="r-sem-term">termo #1</span><span class="r-sem-count defense">18.7k</span></div>
+              <div class="r-sem-row"><span class="r-sem-term">termo #2</span><span class="r-sem-count defense">4.8k</span></div>
+              <div class="r-sem-row"><span class="r-sem-term">termo #3</span><span class="r-sem-count defense">4.5k</span></div>
+            </div>
+            <div>
+              <div class="r-sem-head electoral">DISPUTA</div>
+              <div class="r-sem-row"><span class="r-sem-term">termo #1</span><span class="r-sem-count electoral">2.9k</span></div>
+              <div class="r-sem-row"><span class="r-sem-term">termo #2</span><span class="r-sem-count electoral">2.4k</span></div>
+              <div class="r-sem-row"><span class="r-sem-term">termo #3</span><span class="r-sem-count electoral">2.3k</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="r-mock-footer">
+          <span class="r-mock-footer-label">INTELIGÊNCIA NARRATIVA · CICLO SEMANAL</span>
+          <span class="r-mock-footer-brand">altatica.com.br</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="how" id="como-funciona">
+    <div style="text-align:center;margin-bottom:56px" class="reveal">
+      <p class="section-tag">Como funciona</p>
+      <h2 class="section-title">Do diagnóstico<br>à <em>decisão</em></h2>
+    </div>
+    <div class="steps-grid reveal">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Diagnóstico territorial</div>
+        <div class="step-text">Mapeamos seu desempenho eleitoral histórico, base de apoiadores e zonas de oportunidade em todo o estado.</div>
+        <div class="step-badge">Semana 1</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Plano estratégico</div>
+        <div class="step-text">Com os dados em mãos, construímos juntos o plano de crescimento — municípios prioritários, mensagem e canais.</div>
+        <div class="step-badge">Semana 2</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Operação digital</div>
+        <div class="step-text">Ativamos a estratégia: conteúdo segmentado, mobilização de base e monitoramento em tempo real do adversário.</div>
+        <div class="step-badge">Mensal</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Acompanhamento contínuo</div>
+        <div class="step-text">Reuniões semanais, ajustes de rota e relatórios de performance. Você nunca toma uma decisão sem inteligência.</div>
+        <div class="step-badge">Semanal</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contato">
+    <div class="cta-glow" aria-hidden="true"></div>
+    <div class="cta-inner reveal">
+      <p class="section-tag">Eleições 2026</p>
+      <h2 class="section-title">Quem começa em julho<br>monta <em>estrutura.</em><br>Quem espera, disputa.</h2>
+      <p class="section-desc">
+        A janela eleitoral está aberta. Agende uma conversa sem compromisso e descubra o que o Prisma encontra no seu território.
+      </p>
+      <div>
+        <a href="https://wa.me/5551981171061?text=Ol%C3%A1%2C%20quero%20agendar%20um%20diagn%C3%B3stico%20com%20a%20Alt%C3%A1tica%20Prisma." class="whatsapp-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.556 4.124 1.528 5.855L0 24l6.335-1.502A11.955 11.955 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.787 9.787 0 0 1-5.001-1.368l-.36-.213-3.73.885.916-3.639-.234-.374A9.769 9.769 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+          Agendar diagnóstico gratuito
+        </a>
+        <p class="cta-note">Resposta em até <strong>2 horas</strong> em dias úteis · Sem compromisso</p>
+      </div>
+      <div class="trust-bar">
+        <div class="trust-item">Diagnóstico territorial gratuito</div>
+        <div class="trust-item">Atendimento exclusivo e sigiloso</div>
+        <div class="trust-item">Estrategistas com experiência em campanhas de capital</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Altática <span>Prisma</span></div>
+  <div class="footer-copy">© 2026 Altática · Inteligência política digital</div>
+</footer>
+
+<script>
+// Theme toggle
+function setTheme(t){
+  document.body.classList.toggle('light', t==='light');
+  document.getElementById('btnDark').classList.toggle('active', t==='dark');
+  document.getElementById('btnLight').classList.toggle('active', t==='light');
+  localStorage.setItem('theme', t);
+}
+// Restore saved theme
+const saved = localStorage.getItem('theme');
+if(saved) setTheme(saved);
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:0.12});
+reveals.forEach(el => observer.observe(el));
+
+// Stagger feature cards
+document.querySelectorAll('.feature-card').forEach((c,i)=>{
+  c.style.transitionDelay = (i*0.08)+'s';
+});
+document.querySelectorAll('.step').forEach((c,i)=>{
+  c.style.transitionDelay = (i*0.08)+'s';
+});
+</script>
+</body>
+</html>
